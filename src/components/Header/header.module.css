@@ -1,0 +1,102 @@
+#burger_logo {
+    background-image: url(/src/assets/burger-small.png);
+    width: 227px;
+    Height: 229px;
+}
+
+.header_wrapper {
+    background-image: url(/src/assets/header-bg-600.svg);
+    height: 459px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: auto;
+    padding-top: 24px;
+}
+
+.header_wrapper img {
+    margin: 0 auto 24px;
+}
+
+.header_wrapper figure {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: 19px;
+}
+
+.header_wrapper figure figcaption h1 {
+    color: #FFFFFF;
+    font-size: var(--fs-30);
+    font-weight: 800;
+    line-height: var(--line-height-36px)
+}
+
+.header_wrapper figure figcaption h1 span {
+    color: #FF5C00;
+}
+
+.header_wrapper figure figcaption p {
+    margin-top: 16px;
+    color: #FFFFFF;
+    line-height: var(--line-height-16-37px);
+    font-size: var(--fs-12);
+}
+
+.header_wrapper figure figcaption p span{
+  font-weight: 600;
+}
+
+@media(min-width:651px) {
+    .header_wrapper {
+        background-image: url(/src/assets/header-bg-2540.svg);
+        height: 349px;
+    }
+
+    .header_wrapper figure {
+        align-items: flex-start;
+        flex-direction: row;
+        gap: 10px;
+        text-align: start;
+    }
+
+    .header_wrapper figure figcaption h1 {
+        padding-top: 26px;
+    }
+
+    .header_wrapper figure figcaption p {
+        margin-top: 26px;
+    }
+}
+
+@media (min-width:769px) {
+    .header_wrapper {
+        background-image: url(/src/assets/header-bg-2880.svg);
+        height: 466px;
+    }
+
+    .header_wrapper figure figcaption h1 {
+        padding-top: 46px;
+    }
+
+    .header_wrapper figure {
+        gap: 1px;
+    }
+
+    #burger_logo {
+        background-image: url(/src/assets/burger-big.png);
+        width: 326px;
+        Height: 326px;
+    }
+
+    .header_wrapper figure figcaption p {
+        margin-top: 52px;
+    }
+}
+
+@media(min-width:1025px){
+    .header_wrapper figure {
+        gap: 21px;
+    }
+}

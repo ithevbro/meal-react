@@ -1,0 +1,95 @@
+:root {
+  --main-padding: 0 10px;
+  --line-height-60px: 60px;
+  --line-height-48px: 48px;
+  --line-height-36px: 36px;
+  --line-height-31px: 31.2px;
+  --line-height-24px: 24px;
+  --line-height-21px: 21.82px;
+  --line-height-20px: 20.8px;
+  --line-height-16-37px: 16.37px;
+  --line-height-15px: 15.6px;
+  --fs-50: 50px;
+  --fs-40: 40px;
+  --fs-30: 30px;
+  --fs-24: 24px;
+  --fs-16: 16px;
+  --fs-12: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Nunito, serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  background-color: #F9F9F9;
+  font-weight: 400;
+  /* display: flex;
+  flex-direction: column;
+  min-height: 100vh; */
+  font-size: var(--fs-16);
+}
+
+a {
+  text-decoration: unset;
+  color: black;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  transition: background-color 0.2s;
+  transition: border-color 0.2s;
+  border: 2px solid #F9F9F9;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+a:hover {
+  border: 2px solid #FFAB08;
+}
+
+a:active {
+  color: red;
+  text-decoration: underline;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url(./assets/Nunito-VariableFont_wght.ttf);
+}
+
+@media(min-width:650px) {
+  :root {
+    --fs-30: 36px;
+    --line-height-36px: 43.2px;
+    --main-padding: 0 15px;
+  }
+}
+
+@media(min-width:769px) {
+  :root {
+    --fs-30: 50px;
+    --line-height-36px: 60px;
+    --fs-12: 16px;
+    --line-height-16-37px: 21.82px;
+    --main-padding: 0 32px;
+  }
+}
+
+@media(min-width:1025px) {
+  :root{
+    --main-padding: 0 75px;
+  }
+}
