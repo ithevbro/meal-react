@@ -1,0 +1,122 @@
+.cart_count_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart_count_wrapper h3 {
+    font-size: var(--fs-16);
+    font-weight: 600;
+}
+
+.cart_count_wrapper p {
+    background-color: #F2F2F3;
+    font-size: var(--fs-10);
+    border-radius: 6px;
+    padding: 1px 13px;
+}
+
+.cart_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFFFFF;
+    padding: 16px 10px;
+    border-radius: 18px;
+    box-shadow: 0 0 16px #00000029;
+    line-height: var(--line-height-16-37px);
+    min-width: 100%;
+}
+
+.cart_empty {
+    margin-top: 16px;
+    font-size: var(--fs-12);
+}
+
+.wrapper {
+    font-size: var(--fs-12);
+    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s;
+}
+
+.wrapper.is_open {
+    grid-template-rows: 1fr;
+}
+
+.inner {
+    overflow: hidden;
+}
+
+.delivery {
+    padding-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: var(--fs-10);
+}
+
+#free_delivery {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    flex-grow: 1;
+}
+
+.delivery button {
+    font-size: var(--fs-10);
+}
+
+#checkout {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0 19px 0;
+}
+
+#cart_products li img {
+    width: 64px;
+    height: 52px;
+    border-radius: 8px;
+}
+
+#cart_products li {
+    border-width: 1px 0px;
+    border-style: solid;
+    border-color: #F2F2F3;
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    font-size: var(--fs-12);
+}
+
+#cart_products li:nth-child(n+2) {
+    margin-top: -1px;
+}
+
+#cart_products li section {
+    padding-left: 6px;
+}
+
+#cart_products li section p:nth-child(2) {
+    color: #B1B1B1;
+    margin-bottom: 6px;
+}
+
+@media(min-width:650px) {
+    .cart_wrapper{
+        min-width: 300px;
+        align-self: flex-start;
+    }
+}
+
+@media(min-width:769px) {
+    .cart_wrapper{
+        padding: 24px 16px;
+        position: relative;
+    }
+    #checkout {
+        padding: 16px 0 24px 0;
+    }
+}

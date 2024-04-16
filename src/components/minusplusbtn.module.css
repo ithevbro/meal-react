@@ -1,0 +1,32 @@
+.minus_plus {
+    display: flex;
+    font-size: var(--fs-12);
+    background-color: #F2F2F3;
+    border-radius: 12px;
+    align-items: center;
+    margin-left: auto;
+}
+
+.minus_plus :last-child:active {
+    box-shadow: 1px 0px 2px gray;
+}
+
+.minus_plus :first-child:active {
+    box-shadow: -1px 0px 2px gray;
+}
+
+.minus_plus :first-child {
+    padding: 9px 12px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.minus_plus :nth-child(2) {
+    padding: 9px 4px;
+}
+
+.minus_plus :last-child {
+    padding: 9px 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}

@@ -9,12 +9,14 @@ import Vok from '/src/assets/nav-icons/Vok.png'
 import Desert from '/src/assets/nav-icons/Desert.png'
 import Souce from '/src/assets/nav-icons/Souce.png'
 import { useState, useEffect, useRef } from 'react';
+import { useLocation, Link } from "react-router-dom";
 
 function Nav() {
     const [x, setX] = useState(0);
     const [isClicked, setIsClicked] = useState(false)
     const [move, setMove] = useState(0)
     const ul = useRef()
+    let url = useLocation().pathname
 
     function countGap() {
         let computedStyle = window.getComputedStyle(document.getElementById(style.nav_li_wrap));
@@ -34,7 +36,7 @@ function Nav() {
     }
 
     function getPudding() {
-        let computedStyle = window.getComputedStyle(document.querySelector('.' + style.nav_wrapper));
+        let computedStyle = window.getComputedStyle(document.querySelector('.' + style.navbar));
         return parseInt(computedStyle.getPropertyValue("padding-right"))
     }
 
@@ -95,81 +97,108 @@ function Nav() {
                 }
             }
         });
-
     }
+
+    function onResize() {
+        if (lengthOfNav() + countGap() + getPudding() < window.innerWidth) {
+            ul.current.style.transform = 'translateX(0px)'
+            setMove(0)
+        }
+    }
+
+    function currentNav() {
+        for (let i = 0; i < ul.current.children.length; i++) {
+            if (url == ul.current.children[i].getAttribute('href')) {
+                ul.current.children[i].style.backgroundColor = '#FFAB08'
+                ul.current.children[i].onclick = () => false
+            } else {
+                ul.current.children[i].style.backgroundColor = ''
+                ul.current.children[i].onclick = () => true
+            }
+        }
+    }
+
+    useEffect(() => {
+        currentNav()
+    }, [url])
 
     useEffect(() => {
         document.addEventListener('mousemove', onMove)
         document.addEventListener('mouseup', stopMove)
         document.addEventListener('touchmove', onMove)
         document.addEventListener('touchend', stopMove)
+        window.addEventListener('resize', onResize);
         return () => {
             document.removeEventListener('mousemove', onMove)
             document.removeEventListener('mouseup', stopMove)
             document.removeEventListener('touchmove', onMove)
             document.removeEventListener('touchend', stopMove)
+            window.removeEventListener('resize', onResize)
         }
     }, [isClicked, x, move])
 
     return (
-        <ul className={style.nav_wrapper} onMouseDown={(e) => { onStart(e) }} onTouchStart={(e) => { onStart(e) }}>
-            <div style={{ transform: `translateX(${move}px)` }} id={style.nav_li_wrap} ref={ul}>
-                <a href="/">
-                    <li>
-                        <img src={Burger} alt="" />
-                        <span>Бургеры</span>
-                    </li>
-                </a>
-                <a href="/zakuski">
-                    <li>
-                        <img src={Zakuska} alt="" />
-                        <span>Закуски</span>
-                    </li>
-                </a>
-                <a href="/hotdogs">
-                    <li>
-                        <img src={Hot_dog} alt="" />
-                        <span>Хот-доги</span>
-                    </li>
-                </a>
-                <a href="/kombo">
-                    <li>
-                        <img src={Kombo} alt="" />
-                        <p>Комбо</p>
-                    </li>
-                </a>
-                <a href="/shaurma">
-                    <li>
-                        <img src={Shaurma} alt="" />
-                        <p>Шаурма</p>
-                    </li>
-                </a>
-                <a href="/pizza">
-                    <li>
-                        <img src={Pizza} alt="" />
-                        <p>Пицца</p>
-                    </li>
-                </a>
-                <a href="/vok">
-                    <li>
-                        <img src={Vok} alt="" />
-                        <p>Вок</p>
-                    </li>
-                </a>
-                <a href="/deserts">
-                    <li>
-                        <img src={Desert} alt="" />
-                        <p>Десерты</p>
-                    </li>
-                </a>
-                <a href="/sauces">
-                    <li>
-                        <img src={Souce} alt="" />
-                        <p>Соусы</p>
-                    </li>
-                </a>
-            </div>
-        </ul>
+        <nav className={style.navbar}>
+            <ul className={style.nav_wrapper} onMouseDown={(e) => { onStart(e) }} onTouchStart={(e) => { onStart(e) }}>
+                <div style={{ transform: `translateX(${move}px)` }} id={style.nav_li_wrap} ref={ul}>
+                    <Link to="/">
+                        <li>
+                            <img src={Burger} alt="" />
+                            <span>Бургеры</span>
+                        </li>
+                    </Link>
+
+                    <Link to="/zakuski">
+                        <li>
+                            <img src={Zakuska} alt="" />
+                            <span>Закуски</span>
+                        </li>
+                    </Link>
+                    <Link to="/hotdogs">
+                        <li>
+                            <img src={Hot_dog} alt="" />
+                            <span>Хот-доги</span>
+                        </li>
+                    </Link>
+                    <Link to="/kombo">
+                        <li>
+                            <img src={Kombo} alt="" />
+                            <p>Комбо</p>
+                        </li>
+                    </Link>
+                    <Link to="/shaurma">
+                        <li>
+                            <img src={Shaurma} alt="" />
+                            <p>Шаурма</p>
+                        </li>
+                    </Link>
+                    <Link to="/pizza">
+                        <li>
+                            <img src={Pizza} alt="" />
+                            <p>Пицца</p>
+                        </li>
+                    </Link>
+                    <Link to="/vok">
+                        <li>
+                            <img src={Vok} alt="" />
+                            <p>Вок</p>
+                        </li>
+                    </Link>
+                    <Link to="/deserts">
+                        <li>
+                            <img src={Desert} alt="" />
+                            <p>Десерты</p>
+                        </li>
+                    </Link>
+                    <Link to="/sauces">
+                        <li>
+                            <img src={Souce} alt="" />
+                            <p>Соусы</p>
+                        </li>
+                    </Link>
+                </div>
+            </ul>
+        </nav>
     )
 }
 

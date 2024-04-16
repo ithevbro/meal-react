@@ -44,8 +44,8 @@
     font-size: var(--fs-12);
 }
 
-.header_wrapper figure figcaption p span{
-  font-weight: 600;
+.header_wrapper figure figcaption p span {
+    font-weight: 600;
 }
 
 @media(min-width:651px) {
@@ -93,9 +93,11 @@
     .header_wrapper figure figcaption p {
         margin-top: 52px;
     }
+
+
 }
 
-@media(min-width:1025px){
+@media(min-width:1025px) {
     .header_wrapper figure {
         gap: 21px;
     }

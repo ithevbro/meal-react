@@ -15,6 +15,7 @@
   --fs-24: 24px;
   --fs-16: 16px;
   --fs-12: 12px;
+  --fs-10: 10px;
 }
 
 * {
@@ -65,6 +66,30 @@ a:active {
   text-decoration: underline;
 }
 
+button {
+  cursor: pointer;
+  font-size: var(--fs-12);
+  padding: 11px 0;
+  border-radius: 12px;
+  border: 0;
+  background-color: unset;
+  transition: background-color 0.2s;
+}
+
+.btn-darkorange {
+  background-color: #FF7020;
+  width: 100%;
+  border-radius: 12px;
+  color: white;
+  line-height: var(--line-height-16-37pxx);
+  font-size: var(--fs-12);
+  padding: 9px 0;
+}
+
+.btn-darkorange:active {
+  box-shadow: inset 0px 0px 10px #FFAB08;
+}
+
 @font-face {
   font-family: 'Nunito';
   src: url(./assets/Nunito-VariableFont_wght.ttf);
@@ -85,11 +110,13 @@ a:active {
     --fs-12: 16px;
     --line-height-16-37px: 21.82px;
     --main-padding: 0 32px;
+    --fs-16: 24px;
+    --fs-10: 12px;
   }
 }
 
 @media(min-width:1025px) {
-  :root{
+  :root {
     --main-padding: 0 75px;
   }
 }

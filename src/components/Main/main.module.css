@@ -1,0 +1,13 @@
+.main_wrapper {
+    position: relative;
+    display: flex;
+    gap: 30px;
+}
+
+.main {
+    padding: var(--main-padding);
+}
+
+.main_wrapper section {
+    width: 100%;
+}

@@ -2,9 +2,8 @@ import headerLogo from '/src/assets/header-logo.png';
 import style from './header.module.css'
 import Nav from './Nav';
 
-
 function Header() {
-   
+  
     return (
         <header>
             <section className={style.header_wrapper}>
@@ -21,7 +20,7 @@ function Header() {
                     </figcaption>
                 </figure>
             </section>
-            <nav ><Nav /></nav>
+            <Nav />
         </header>
     )
 }
