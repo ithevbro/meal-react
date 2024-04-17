@@ -12,6 +12,7 @@
   --fs-50: 50px;
   --fs-40: 40px;
   --fs-30: 30px;
+  --fs-28: 28px;
   --fs-24: 24px;
   --fs-16: 16px;
   --fs-12: 12px;
@@ -84,6 +85,7 @@ button {
   line-height: var(--line-height-16-37pxx);
   font-size: var(--fs-12);
   padding: 9px 0;
+  margin-top: auto;
 }
 
 .btn-darkorange:active {
@@ -112,6 +114,7 @@ button {
     --main-padding: 0 32px;
     --fs-16: 24px;
     --fs-10: 12px;
+    --fs-28: 40px
   }
 }
 
