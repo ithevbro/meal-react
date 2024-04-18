@@ -1,9 +1,11 @@
 import style from './singleprod.module.css'
 import MinusPlusBtn from "../MinusPlusBtn";
-import gavno from './gavno2.png'
+import { OverlayState } from '../../services/service';
+import { useContext } from 'react';
 
 function SingleProd() {
-    console.log(MinusPlusBtn);
+    const data = useContext(OverlayState).data
+
     return (
         <div className={style.single_product}>
             <h2>
@@ -11,7 +13,7 @@ function SingleProd() {
             </h2>
             <figure>
                 <div className={style.prod_img_wrap}>
-                    <img src={gavno} alt="" />
+                    <img src={data.imgpath} alt="" />
                 </div>
                 <figcaption>
                     <p>
@@ -34,7 +36,7 @@ function SingleProd() {
                 <button className="btn-darkorange">Добавить</button>
                 <MinusPlusBtn />
                 <p>
-                    689грн
+                    {data.price}грн
                 </p>
             </div>
 

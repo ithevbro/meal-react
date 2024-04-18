@@ -2,10 +2,18 @@ import { useState } from "react"
 import style from "./cart.module.css"
 import delimg from '/src/assets/delivery.png';
 import ProdInCart from "./ProdInCart";
+import { OverlayState, OverlayDispatch } from "../../../services/service";
+import { useContext } from "react";
 
 function Cart() {
     const [classTogle, setclassTogle] = useState(true)
     const [show, setShow] = useState(true)
+    const state = useContext(OverlayState)
+    const dispatch = useContext(OverlayDispatch)
+
+    function checkOut() {
+        dispatch({ type: 'delivery', data: 'loh' })
+    }
 
     function hideDelivery() {
         setclassTogle(!classTogle)
@@ -13,7 +21,6 @@ function Cart() {
             setShow(false)
         }, 400)
     }
-
     function showDelivery() {
         if (!show) {
             setclassTogle(!classTogle)
@@ -38,7 +45,7 @@ function Cart() {
                         <div id={style.checkout}>
                             <span>Итого</span> <span id="cart-total-price">0</span>
                         </div>
-                        <button id="makeorder" className="btn-darkorange">
+                        <button onClick={checkOut} id="makeorder" className="btn-darkorange">
                             Оформить заказ
                         </button>
                         <div className={style.delivery}>

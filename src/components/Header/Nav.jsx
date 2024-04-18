@@ -1,5 +1,5 @@
 import style from './nav.module.css'
-import Burger from '/src/assets/nav-icons/Burgers.png'
+// import Burger from '/src/assets/nav-icons/Burgers.png'
 import Zakuska from '/src/assets/nav-icons/Zakuska.png'
 import Hot_dog from '/src/assets/nav-icons/Hot-dog.png'
 import Kombo from '/src/assets/nav-icons/Kombo.png'
@@ -143,7 +143,7 @@ function Nav() {
                 <div style={{ transform: `translateX(${move}px)` }} id={style.nav_li_wrap} ref={ul}>
                     <Link to="/">
                         <li>
-                            <img src={Burger} alt="" />
+                            <img src="/Burgers.png" alt="" />
                             <span>Бургеры</span>
                         </li>
                     </Link>
