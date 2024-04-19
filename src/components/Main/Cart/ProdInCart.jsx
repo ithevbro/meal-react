@@ -1,15 +1,16 @@
 import MinusPlusBtn from "../../MinusPlusBtn";
 
-function ProdInCart() {
+function ProdInCart({ data }) {
+
     return (
         <li>
-            <img src="./images/gavno.jpg" />
+            <img src={data.imgpath} />
             <section>
-                <p>Супер сырный</p>
-                <p>512г</p>
-                <p>550грн</p>
+                <p>{data.title}</p>
+                <p>{data.weight}г</p>
+                <p>{data.price}грн</p>
             </section>
-            <MinusPlusBtn />
+            <MinusPlusBtn qnt={data.qnt} id={data.id} />
         </li>
     )
 }

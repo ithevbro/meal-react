@@ -1,10 +1,34 @@
 import style from './singleprod.module.css'
 import MinusPlusBtn from "../MinusPlusBtn";
-import { OverlayState } from '../../services/service';
-import { useContext } from 'react';
+import { OverlayState, CartDispatch, OverlayDispatch, CartState } from '../../services/service';
+import { useContext, useState } from 'react';
 
 function SingleProd() {
     const data = useContext(OverlayState).data
+    const cartEdit = useContext(CartDispatch)
+    const overlayClose = useContext(OverlayDispatch)
+    const cartData = useContext(CartState)
+    let id = cartData.find(item => item.id == data.id)
+    const [qnt, setQnt] = useState(id?.qnt || 1)
+
+    function addToCart() {
+        if (id) {
+            cartEdit({ type: 'edit', data: { ...data, qnt: qnt } })
+        } else {
+            cartEdit({ type: 'add', data: { ...data, qnt: qnt, inCart: true } })
+        }
+    }
+    
+    function incQnt() {
+        setQnt(qnt + 1)
+    }
+    function decQnt() {
+        if (qnt < 2) {
+            return
+        } else {
+            setQnt(qnt - 1)
+        }
+    }
 
     return (
         <div className={style.single_product}>
@@ -33,8 +57,11 @@ function SingleProd() {
                 </figcaption>
             </figure>
             <div className={style.single_product_btns}>
-                <button className="btn-darkorange">Добавить</button>
-                <MinusPlusBtn />
+                <button onClick={() => {
+                    overlayClose(false)
+                    addToCart()
+                }} className="btn-darkorange">Добавить</button>
+                <MinusPlusBtn qnt={qnt} incQnt={incQnt} decQnt={decQnt} data={cartData || data} />
                 <p>
                     {data.price}грн
                 </p>

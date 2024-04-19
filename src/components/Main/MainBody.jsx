@@ -3,7 +3,7 @@ import style from "./main.module.css"
 import Cart from "./Cart/Cart"
 
 function MainBody() {
-
+  
     return (
         <main className={style.main}>
             <div className={style.main_wrapper}>

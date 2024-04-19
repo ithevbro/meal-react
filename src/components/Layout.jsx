@@ -1,20 +1,25 @@
 import Header from "./Header/Header"
 import { Outlet } from "react-router-dom"
 import Overlay from "./Overlay/Overlay"
-import { OverlayDispatch, OverlayState, overlayReducer } from "../services/service"
+import { OverlayDispatch, OverlayState, overlayReducer, CartState, CartDispatch, cartReducer } from "../services/service"
 import { useReducer } from "react"
 
 function Layout() {
     const [state, dispatch] = useReducer(overlayReducer, false);
+    const [cartState, cartDispatch] = useReducer(cartReducer, [])
 
     return (
-        <OverlayState.Provider value={state}>
-            <OverlayDispatch.Provider value={dispatch}>
-                <Header />
-                <Outlet />
-                <Overlay />
-            </OverlayDispatch.Provider >
-        </OverlayState.Provider >
+        <CartState.Provider value={cartState}>
+            <CartDispatch.Provider value={cartDispatch}>
+                <OverlayState.Provider value={state}>
+                    <OverlayDispatch.Provider value={dispatch}>
+                        <Header />
+                        <Outlet />
+                        <Overlay />
+                    </OverlayDispatch.Provider >
+                </OverlayState.Provider >
+            </CartDispatch.Provider>
+        </CartState.Provider>
     )
 }
 
