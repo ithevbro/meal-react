@@ -10,7 +10,7 @@ function ProdInCart({ data }) {
                 <p>{data.weight}г</p>
                 <p>{data.price}грн</p>
             </section>
-            <MinusPlusBtn qnt={data.qnt} id={data.id} />
+            <MinusPlusBtn qnt={data.qnt} />
         </li>
     )
 }

@@ -11,8 +11,7 @@ async function getProducts(url) {
 
 function overlayReducer(state, action) {
     if (action.type == 'product') {
-        console.log(action);
-        return {...action,}
+        return action
     } else if (action.type == 'delivery') {
         return action
     } else {

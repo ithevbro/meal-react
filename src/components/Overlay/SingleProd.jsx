@@ -13,23 +13,25 @@ function SingleProd() {
 
     function addToCart() {
         if (id) {
-            cartEdit({ type: 'edit', data: { ...data, qnt: qnt } })
+            cartEdit({ type: 'edit', data: { ...data, qnt: qnt} })
         } else {
             cartEdit({ type: 'add', data: { ...data, qnt: qnt, inCart: true } })
         }
+
     }
-    
+
     function incQnt() {
         setQnt(qnt + 1)
     }
+    
     function decQnt() {
         if (qnt < 2) {
             return
         } else {
             setQnt(qnt - 1)
         }
-    }
 
+    }
     return (
         <div className={style.single_product}>
             <h2>
@@ -61,7 +63,7 @@ function SingleProd() {
                     overlayClose(false)
                     addToCart()
                 }} className="btn-darkorange">Добавить</button>
-                <MinusPlusBtn qnt={qnt} incQnt={incQnt} decQnt={decQnt} data={cartData || data} />
+                <MinusPlusBtn qnt={qnt} incQnt={incQnt} decQnt={decQnt} />
                 <p>
                     {data.price}грн
                 </p>
