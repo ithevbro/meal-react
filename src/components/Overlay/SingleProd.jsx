@@ -20,31 +20,6 @@ function SingleProd() {
         }
     }
 
-    function incQnt() {
-        if (id) {
-            cartEdit({ type: 'edit', data: { ...id, qnt: id.qnt + 1 } })
-        } else {
-            overlayEdit({ ...overlayData, data: { ...overlayData.data, qnt: overlayData.data.qnt + 1 } })
-        }
-    }
-
-    function decQnt() {
-        if (id) {
-            if (id.qnt < 2) {
-                return
-            } else {
-                cartEdit({ type: 'edit', data: { ...overlayData.data, qnt: id.qnt - 1 } })
-            }
-
-        } else {
-            if (overlayData.data.qnt < 2) {
-                return
-            } else {
-                overlayEdit({ ...overlayData, data: { ...overlayData.data, qnt: overlayData.data.qnt - 1 } })
-            }
-        }
-    }
-
     return (
         <div className={style.single_product}>
             <h2>
@@ -71,9 +46,10 @@ function SingleProd() {
                     </span>
                 </figcaption>
             </figure>
+            
             <div className={style.single_product_btns}>
                 <button onClick={addToCart} className="btn-darkorange">Добавить</button>
-                <MinusPlusBtn dec={decQnt} inc={incQnt} state={id || overlayData.data} />
+                <MinusPlusBtn state={id || overlayData.data} id={id} />
                 <p>
                     {overlayData.data.price}грн
                 </p>
