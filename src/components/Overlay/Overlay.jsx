@@ -6,30 +6,30 @@ import { OverlayState, OverlayDispatch } from '../../services/service';
 
 function Overlay() {
     const overlayNode = useRef()
-    const data = useContext(OverlayState)
+    const overlayData = useContext(OverlayState)
     const dispatch = useContext(OverlayDispatch)
 
     useEffect(() => {
-        if (data) {
+        if (overlayData.overlayOn) {
             overlayNode.current.style.display = ''
             document.documentElement.style.overflow = 'hidden'
         } else {
             overlayNode.current.style.display = 'none'
             document.documentElement.style.overflow = ''
         }
-    }, [data])
+    }, [overlayData])
 
     function closeOverlay() {
         overlayNode.current.style.display = 'none'
         document.documentElement.style.overflow = ''
-        dispatch(false)
+        dispatch({ ...overlayData, overlayOn: false })
     }
 
     return (
 
         <div id={style.overlay} ref={overlayNode}>
             <div className={style.overlay_control}>
-                {data.type == 'product' ? <SingleProd /> : data.type == 'delivery' ? <Delivery /> : null}
+                {overlayData.type == 'product' ? <SingleProd /> : overlayData.type == 'delivery' ? <Delivery /> : null}
                 <span onClick={closeOverlay} id={style.close_overlay} />
             </div>
         </div>

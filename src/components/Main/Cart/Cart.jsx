@@ -2,7 +2,7 @@ import { useState } from "react"
 import style from "./cart.module.css"
 import delimg from '/src/assets/delivery.png';
 import ProdInCart from "./ProdInCart";
-import { OverlayDispatch, CartState } from "../../../services/service";
+import { OverlayDispatch, CartState, OverlayState } from "../../../services/service";
 import { useContext } from "react";
 
 function Cart() {
@@ -10,6 +10,7 @@ function Cart() {
     const [show, setShow] = useState(true)
     const dispatch = useContext(OverlayDispatch)
     const cartData = useContext(CartState)
+    // const OverlayEdit = useContext(OverlayState)
 
     function checkOut() {
         dispatch({ type: 'delivery', data: 'loh' })
@@ -49,7 +50,7 @@ function Cart() {
                         <button onClick={checkOut} id="makeorder" className="btn-darkorange">
                             Оформить заказ
                         </button>
-                        
+
                         <div className={style.delivery}>
                             <div id={style.free_delivery}>
                                 <img src={delimg} alt="" />

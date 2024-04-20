@@ -11,7 +11,7 @@ async function getProducts(url) {
 
 function overlayReducer(state, action) {
     if (action.type == 'product') {
-        return action
+        return { ...state, ...action }
     } else if (action.type == 'delivery') {
         return action
     } else {
@@ -35,7 +35,6 @@ function cartReducer(state, action) {
                 return item
             }
         })
-
     } else if (action.type == 'del') {
 
     }

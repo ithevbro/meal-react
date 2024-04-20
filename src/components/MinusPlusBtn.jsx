@@ -1,12 +1,11 @@
 import style from './minusplusbtn.module.css'
 
-function MinusPlusBtn({ qnt, incQnt, decQnt }) {
-    
+function MinusPlusBtn({ state, inc, dec }) {
     return (
         <div className={style.minus_plus}>
-            <button onClick={decQnt}>-</button>
-            <div>{qnt}</div>
-            <button onClick={incQnt}>+</button>
+            <button onClick={dec}>-</button>
+            <div>{state.qnt}</div>
+            <button onClick={inc}>+</button>
         </div>
     )
 }

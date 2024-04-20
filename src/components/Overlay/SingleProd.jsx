@@ -1,37 +1,50 @@
 import style from './singleprod.module.css'
 import MinusPlusBtn from "../MinusPlusBtn";
 import { OverlayState, CartDispatch, OverlayDispatch, CartState } from '../../services/service';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 function SingleProd() {
-    const data = useContext(OverlayState).data
+    const overlayData = useContext(OverlayState)
+    const overlayEdit = useContext(OverlayDispatch)
     const cartEdit = useContext(CartDispatch)
-    const overlayClose = useContext(OverlayDispatch)
     const cartData = useContext(CartState)
-    let id = cartData.find(item => item.id == data.id)
-    const [qnt, setQnt] = useState(id?.qnt || 1)
+    let id = cartData.find(item => item.id == overlayData.data.id)
 
     function addToCart() {
         if (id) {
-            cartEdit({ type: 'edit', data: { ...data, qnt: qnt} })
+            cartEdit({ type: 'edit', data: { ...id, qnt: id.qnt } })
+            overlayEdit({ ...overlayData, overlayOn: false })
         } else {
-            cartEdit({ type: 'add', data: { ...data, qnt: qnt, inCart: true } })
+            cartEdit({ type: 'add', data: { ...overlayData.data, inCart: true } })
+            overlayEdit({ ...overlayData, overlayOn: false })
         }
-
     }
 
     function incQnt() {
-        setQnt(qnt + 1)
-    }
-    
-    function decQnt() {
-        if (qnt < 2) {
-            return
+        if (id) {
+            cartEdit({ type: 'edit', data: { ...id, qnt: id.qnt + 1 } })
         } else {
-            setQnt(qnt - 1)
+            overlayEdit({ ...overlayData, data: { ...overlayData.data, qnt: overlayData.data.qnt + 1 } })
         }
-
     }
+
+    function decQnt() {
+        if (id) {
+            if (id.qnt < 2) {
+                return
+            } else {
+                cartEdit({ type: 'edit', data: { ...overlayData.data, qnt: id.qnt - 1 } })
+            }
+
+        } else {
+            if (overlayData.data.qnt < 2) {
+                return
+            } else {
+                overlayEdit({ ...overlayData, data: { ...overlayData.data, qnt: overlayData.data.qnt - 1 } })
+            }
+        }
+    }
+
     return (
         <div className={style.single_product}>
             <h2>
@@ -39,7 +52,7 @@ function SingleProd() {
             </h2>
             <figure>
                 <div className={style.prod_img_wrap}>
-                    <img src={data.imgpath} alt="" />
+                    <img src={overlayData.data.imgpath} alt="" />
                 </div>
                 <figcaption>
                     <p>
@@ -59,13 +72,10 @@ function SingleProd() {
                 </figcaption>
             </figure>
             <div className={style.single_product_btns}>
-                <button onClick={() => {
-                    overlayClose(false)
-                    addToCart()
-                }} className="btn-darkorange">Добавить</button>
-                <MinusPlusBtn qnt={qnt} incQnt={incQnt} decQnt={decQnt} />
+                <button onClick={addToCart} className="btn-darkorange">Добавить</button>
+                <MinusPlusBtn dec={decQnt} inc={incQnt} state={id || overlayData.data} />
                 <p>
-                    {data.price}грн
+                    {overlayData.data.price}грн
                 </p>
             </div>
 

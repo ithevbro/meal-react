@@ -5,7 +5,7 @@ import { OverlayDispatch, OverlayState, overlayReducer, CartState, CartDispatch,
 import { useReducer } from "react"
 
 function Layout() {
-    const [state, dispatch] = useReducer(overlayReducer, false);
+    const [state, dispatch] = useReducer(overlayReducer, { overlayOn: false });
     const [cartState, cartDispatch] = useReducer(cartReducer, [])
 
     return (
